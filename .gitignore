@@ -1,0 +1,23 @@
+# Ignore build artifacts
+bin/
+build/
+
+# Ignore project files
+*.project
+*.workspace
+*.launch
+
+# Ignore temporary files
+*.tmp
+*.bak
+*.swp
+
+# Ignore log files
+*.log
+
+# Ignore compiled files
+*.prg
+*.iq
+
+# Ignore user-specific files
+*.userprefs

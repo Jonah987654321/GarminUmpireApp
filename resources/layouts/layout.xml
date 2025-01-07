@@ -1,3 +1,33 @@
 <layout id="MainLayout">
-    <label x="center" y="5" text="@Strings.testString" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_CENTER" />
+    <drawable id="gameMainBackground" />
+    <text-area id="periodDisplay"
+        color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_CENTER"
+        text="1/4" 
+        x="0%" y="4%" width="100%" height="20%" font="Graphics.FONT_AUX9" 
+    />
+    <text-area id="timer"
+        color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_CENTER"
+        text="15:00" 
+        x="0%" y="11.5%" width="100%" height="20%" font="Graphics.FONT_LARGE" 
+    />
+    <text-area id="team1NameDisplay"
+        color="Graphics.COLOR_LT_GRAY" justification="Graphics.TEXT_JUSTIFY_LEFT"
+        text="Team 1" 
+        x="3%" y="40%" width="97%" height="20%" font="Graphics.FONT_AUX9" 
+    />
+    <text-area id="team2NameDisplay"
+        color="Graphics.COLOR_LT_GRAY" justification="Graphics.TEXT_JUSTIFY_RIGHT"
+        text="Team 2" 
+        x="0%" y="40%" width="97%" height="20%" font="Graphics.FONT_AUX9" 
+    />
+    <text-area id="scoreTeam1" 
+        color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_RIGHT"
+        text="0" 
+        x="0%" y="34%" width="40%" height="50%" font="Graphics.FONT_MEDIUM" 
+    />
+    <text-area id="scoreTeam2" 
+        color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_LEFT"
+        text="0" 
+        x="60%" y="34%" width="40%" height="50%" font="Graphics.FONT_MEDIUM"
+    />
 </layout>

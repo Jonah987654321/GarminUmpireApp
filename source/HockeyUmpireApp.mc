@@ -18,7 +18,8 @@ class HockeyUmpireApp extends Application.AppBase {
 
     // Return the initial view of your application here
     function getInitialView() as [Views] or [Views, InputDelegates] {
-        return [ new HockeyUmpireView(), new HockeyUmpireDelegate() ];
+        var view = new HockeyUmpireView();
+        return [view, new HockeyUmpireDelegate(view) ];
     }
 
 }

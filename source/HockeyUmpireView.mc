@@ -93,7 +93,7 @@ class HockeyUmpireView extends WatchUi.View {
             if (newPeriod.type == PeriodType.RegularPeriod) {
                 _currentPeriod++;
             }
-            var periodText = (newPeriod.type == PeriodType.RegularPeriod)?_currentPeriod+"/"+_getPeriodAmount():"Break";
+            var periodText = (newPeriod.type == PeriodType.RegularPeriod)?_currentPeriod+"/"+_getPeriodAmount():Rez.Strings.BreakText;
             _periodDisplayElement.setText(periodText);
 
             requestUpdate();
@@ -187,7 +187,7 @@ class HockeyUmpireView extends WatchUi.View {
             _stopTimer();
 
             if (_currentPeriodIndex == _allPeriods.size()-1) {
-                _periodDisplayElement.setText("Game finished");
+                _periodDisplayElement.setText(@Rez.Strings.FinishText);
             }
         }
 

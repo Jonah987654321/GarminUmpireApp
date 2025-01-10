@@ -1,0 +1,6 @@
+<strings>
+    <string id="AppName">HockeyUmpire</string>
+
+    <string id="BreakText">Break</string>
+    <string id="FinishText">Game finished</string>
+</strings>

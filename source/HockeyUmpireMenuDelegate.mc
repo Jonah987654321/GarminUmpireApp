@@ -12,7 +12,7 @@ class HockeyUmpireMenuDelegate extends WatchUi.MenuInputDelegate {
         if (item == :item_1) {
             System.println("item 1");
         } else if (item == :item_2) {
-            System.println("item 2");
+            System.exit();
         }
     }
 

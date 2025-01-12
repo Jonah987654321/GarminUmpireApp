@@ -1,0 +1,3 @@
+<menu2 id="AdjustGoalsMenu" title="@Strings.mainMenuAdjustGoals">
+    <menu-item id="test" label="Test"/>
+</menu2>

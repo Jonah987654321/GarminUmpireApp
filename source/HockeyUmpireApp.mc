@@ -3,6 +3,7 @@ import Toybox.Lang;
 import Toybox.WatchUi;
 
 class HockeyUmpireApp extends Application.AppBase {
+    private var view;
 
     function initialize() {
         AppBase.initialize();
@@ -16,9 +17,14 @@ class HockeyUmpireApp extends Application.AppBase {
     function onStop(state as Dictionary?) as Void {
     }
 
+    function reset() {
+        view.reset();
+    }
+
     // Return the initial view of your application here
     function getInitialView() as [Views] or [Views, InputDelegates] {
         var view = new HockeyUmpireView();
+        self.view = view;
         return [view, new HockeyUmpireDelegate(view) ];
     }
 

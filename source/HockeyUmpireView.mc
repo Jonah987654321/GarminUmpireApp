@@ -4,6 +4,7 @@ import Toybox.System;
 import Toybox.Math;
 import Toybox.Timer;
 import Toybox.Lang;
+import Toybox.Attention;
 
 class HockeyUmpireView extends WatchUi.View {
 
@@ -21,7 +22,7 @@ class HockeyUmpireView extends WatchUi.View {
     private var _timeInPeriod;
     private var _currentPeriodIndex;
     private var _currentPeriod;
-    private var _allPeriods as Array<Period>;
+    private var _allPeriods as Array<Period>?;
 
     private var _periodDisplayElement;
     private var _timerElement;
@@ -33,24 +34,35 @@ class HockeyUmpireView extends WatchUi.View {
     // Class setup
     function initialize() {
         View.initialize();
+        _initValues();
+    }
+
+    private function _initValues() as Void {
         _scoreTeam1 = 0;
         _scoreTeam2 = 0;
 
         _currentPeriodIndex = -1;
         _currentPeriod = 0;
-        _allPeriods = [new Period(PeriodType.RegularPeriod, 15*60), new Period(PeriodType.BreakPeriod, 5*60), new Period(PeriodType.RegularPeriod, 1*60)];
+        _allPeriods = [new Period(PeriodType.RegularPeriod, 15*60), new Period(PeriodType.BreakPeriod, 5*60), new Period(PeriodType.RegularPeriod, 15*60)];
 
         _timer = new Timer.Timer();
         _timerRunning = false;
         _skipPeriodInit = false;
     }
 
+    public function reset() as Void {
+        _stopTimer(false);
+        _initValues();
+        nextPeriod();
+        requestUpdate();
+    }
+
     // Function for delegate to manage timer
     public function toggleTimer() as Void {
         if (_timerRunning) {
-            _stopTimer();
+            _stopTimer(true);
         } else {
-            _startTimer();
+            _startTimer(true);
         }
 
         requestUpdate();
@@ -83,7 +95,7 @@ class HockeyUmpireView extends WatchUi.View {
     
     public function nextPeriod() as Void {
         if (_currentPeriodIndex < _getPeriodAmount()) {
-            _stopTimer();
+            _stopTimer(false);
             _currentPeriodIndex++;
 
             var newPeriod = _allPeriods[_currentPeriodIndex];
@@ -167,16 +179,34 @@ class HockeyUmpireView extends WatchUi.View {
     // -------Functions to control the timer-------
     // --------------------------------------------
 
-    private function _stopTimer() as Void {
+    private function startStopVibe() as Void {
+        if (Attention has :vibrate) {
+                var vibeData =
+                [
+                    new Attention.VibeProfile(50, 500), // On for two seconds
+                ];
+                Attention.vibrate(vibeData);
+            }
+    }
+
+    private function _stopTimer(vibrate) as Void {
         _timer.stop();
+        if (vibrate) {
+            startStopVibe();
+        }
         _timerElement.setColor(Graphics.COLOR_RED);
         _timerRunning = false;
     }
 
-    private function _startTimer() as Void {
-        _timer.start(method(:timerTick), 1000, true);
-        _timerElement.setColor(Graphics.COLOR_GREEN);
-        _timerRunning = true;
+    private function _startTimer(vibrate) as Void {
+        if (_timeInPeriod > 0) {
+            _timer.start(method(:timerTick), 1000, true);
+            if (vibrate) {
+                startStopVibe();
+            }
+            _timerElement.setColor(Graphics.COLOR_GREEN);
+            _timerRunning = true;
+        }
     }
 
     // Timer tick, called once every second as long as the timer is running
@@ -184,7 +214,18 @@ class HockeyUmpireView extends WatchUi.View {
         _timeInPeriod--;
 
         if (_timeInPeriod == 0) {
-            _stopTimer();
+            if (Attention has :vibrate) {
+                var vibeData =
+                [
+                    new Attention.VibeProfile(50, 2000), // On for two seconds
+                    new Attention.VibeProfile(0, 2000),  // Off for two seconds
+                    new Attention.VibeProfile(50, 2000), // On for two seconds
+                    new Attention.VibeProfile(0, 2000),  // Off for two seconds
+                    new Attention.VibeProfile(50, 2000)  // on for two seconds
+                ];
+                Attention.vibrate(vibeData);
+            }
+            _stopTimer(false);
 
             if (_currentPeriodIndex == _allPeriods.size()-1) {
                 _periodDisplayElement.setText(@Rez.Strings.FinishText);

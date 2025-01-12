@@ -122,6 +122,7 @@ class HockeyUmpireView extends WatchUi.View {
                 _scoreTeam2++;
                 break;
         }
+        inputChangeAttention();
 
         requestUpdate();
     }
@@ -179,11 +180,11 @@ class HockeyUmpireView extends WatchUi.View {
     // -------Functions to control the timer-------
     // --------------------------------------------
 
-    private function startStopVibe() as Void {
+    private function inputChangeAttention() as Void {
         if (Attention has :vibrate) {
                 var vibeData =
                 [
-                    new Attention.VibeProfile(50, 500), // On for two seconds
+                    new Attention.VibeProfile(100, 150)
                 ];
                 Attention.vibrate(vibeData);
             }
@@ -192,7 +193,7 @@ class HockeyUmpireView extends WatchUi.View {
     private function _stopTimer(vibrate) as Void {
         _timer.stop();
         if (vibrate) {
-            startStopVibe();
+            inputChangeAttention();
         }
         _timerElement.setColor(Graphics.COLOR_RED);
         _timerRunning = false;
@@ -202,7 +203,7 @@ class HockeyUmpireView extends WatchUi.View {
         if (_timeInPeriod > 0) {
             _timer.start(method(:timerTick), 1000, true);
             if (vibrate) {
-                startStopVibe();
+                inputChangeAttention();
             }
             _timerElement.setColor(Graphics.COLOR_GREEN);
             _timerRunning = true;
@@ -217,11 +218,11 @@ class HockeyUmpireView extends WatchUi.View {
             if (Attention has :vibrate) {
                 var vibeData =
                 [
-                    new Attention.VibeProfile(50, 2000), // On for two seconds
-                    new Attention.VibeProfile(0, 2000),  // Off for two seconds
-                    new Attention.VibeProfile(50, 2000), // On for two seconds
-                    new Attention.VibeProfile(0, 2000),  // Off for two seconds
-                    new Attention.VibeProfile(50, 2000)  // on for two seconds
+                    new Attention.VibeProfile(100, 500),
+                    new Attention.VibeProfile(0, 100),
+                    new Attention.VibeProfile(100, 500),
+                    new Attention.VibeProfile(0, 100),
+                    new Attention.VibeProfile(100, 1000)
                 ];
                 Attention.vibrate(vibeData);
             }

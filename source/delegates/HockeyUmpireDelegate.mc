@@ -31,4 +31,9 @@ class HockeyUmpireDelegate extends WatchUi.InputDelegate {
         }
     }
 
+    // Prevent touch behavior
+    function onRelease(clickEvent as WatchUi.ClickEvent) {
+        return true;
+    }
+
 }

@@ -6,7 +6,7 @@ import Toybox.Timer;
 import Toybox.Lang;
 import Toybox.Attention;
 
-class HockeyUmpireView extends WatchUi.View {
+class GameView extends WatchUi.View {
 
     // Vars & Elements for Score:
     private var _scoreTeam1;
@@ -129,7 +129,7 @@ class HockeyUmpireView extends WatchUi.View {
 
     // Load your resources here
     function onLayout(dc as Dc) as Void {
-        setLayout(Rez.Layouts.MainLayout(dc));
+        setLayout(Rez.Layouts.GameViewLayout(dc));
 
         _scoreTeam1Element = findDrawableById("scoreTeam1");
         _scoreTeam2Element = findDrawableById("scoreTeam2");

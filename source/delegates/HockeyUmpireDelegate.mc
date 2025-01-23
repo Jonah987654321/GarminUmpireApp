@@ -44,6 +44,7 @@ class HockeyUmpireDelegate extends WatchUi.InputDelegate {
                 // Button long press => Quick game options
                 WatchUi.pushView(new Rez.Menus.QuickGameOptions(), new HockeyUmpireGameOptionsDelegate(), WatchUi.SLIDE_UP);
             } else {
+                // Button quick press => Add goal
                 self._view.updateScore(2);
             }
             return true;

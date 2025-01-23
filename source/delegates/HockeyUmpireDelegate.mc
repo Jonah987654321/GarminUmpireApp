@@ -1,8 +1,10 @@
 import Toybox.Lang;
 import Toybox.WatchUi;
+import Toybox.Time;
 
 class HockeyUmpireDelegate extends WatchUi.InputDelegate {
     private var _view;
+    private var _downPressStart;
 
     function initialize(view) {
         InputDelegate.initialize();
@@ -13,9 +15,6 @@ class HockeyUmpireDelegate extends WatchUi.InputDelegate {
         switch(key.getKey()) {
             case WatchUi.KEY_UP:
                 self._view.updateScore(1);
-                return true;
-            case WatchUi.KEY_DOWN:
-                self._view.updateScore(2);
                 return true;
             case WatchUi.KEY_ESC:
                 self._view.nextPeriodButton();
@@ -29,6 +28,27 @@ class HockeyUmpireDelegate extends WatchUi.InputDelegate {
             default:
                 return false;
         }
+    }
+
+    function onKeyPressed(key as WatchUi.KeyEvent) as Boolean {
+        if (key.getKey() == WatchUi.KEY_DOWN) {
+            _downPressStart = Time.now();
+            return true;
+        }
+        return false;
+    }
+
+    function onKeyReleased(key as WatchUi.KeyEvent) as Boolean {
+        if (key.getKey() == WatchUi.KEY_DOWN) {
+            if (Time.now().value() - _downPressStart.value() > 0) {
+                // Button long press => Quick game options
+                WatchUi.pushView(new Rez.Menus.QuickGameOptions(), new HockeyUmpireGameOptionsDelegate(), WatchUi.SLIDE_UP);
+            } else {
+                self._view.updateScore(2);
+            }
+            return true;
+        }
+        return false;
     }
 
     // Prevent touch behavior

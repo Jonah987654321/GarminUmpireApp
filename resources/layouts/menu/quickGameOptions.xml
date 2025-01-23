@@ -1,0 +1,4 @@
+<menu2 id="QuickGameOptions" title="@Strings.quickGameOptionsTitle">
+    <menu-item id="menuAdjustGoals" label="@Strings.quickGameOptionsAdjustGoals" />
+    <menu-item id="menuAdjustTime" label="@Strings.quickGameOptionsAdjustTime" />
+</menu2>

@@ -1,6 +1,4 @@
 <menu2 id="MainMenu" title="@Strings.mainMenuTitle">
-    <menu-item id="menuAdjustGoals" label="@Strings.mainMenuAdjustGoals" />
-    <menu-item id="menuAdjustTime" label="@Strings.mainMenuAdjustTime" />
     <menu-item id="menuSelectGamePreset" label="@Strings.mainMenuSelectGamePreset" />
     <menu-item id="menuNewGame" label="@Strings.mainMenuNewGame" />
     <menu-item id="menuExitApp" label="@Strings.mainMenuExit" />

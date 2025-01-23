@@ -1,11 +1,13 @@
 <strings>
     <string id="mainMenuTitle">Options</string>
-    <string id="mainMenuAdjustGoals">Adjust goals</string>
-    <string id="mainMenuAdjustTime">Adjust time</string>
     <string id="mainMenuSelectGamePreset">Select game preset</string>
 
     <string id="mainMenuNewGame">New game</string>
     <string id="mainMenuNewGameConfirmation">New game? The current game state will be lost</string>
 
     <string id="mainMenuExit">Exit app</string>
+
+    <string id="quickGameOptionsTitle">Game Options</string>
+    <string id="quickGameOptionsAdjustGoals">Adjust goals</string>
+    <string id="quickGameOptionsAdjustTime">Adjust time</string>
 </strings>

@@ -1,13 +1,11 @@
 using Toybox.ActivityRecording;
 
 class ActivityManager {
-    private var sessionRunning;
     private var sessionCreated;
     private var session;
     private var activitiesEnabled;
 
     function initialize() {
-        sessionRunning = false;
         sessionCreated = false;
         activitiesEnabled = Toybox has :ActivityRecording;
     }

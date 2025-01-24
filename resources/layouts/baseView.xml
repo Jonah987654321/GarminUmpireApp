@@ -1,0 +1,9 @@
+<layout id="BaseViewLayout">
+    <text-area x="0" y="0"
+        width="100%" height="100%"
+        text="@Strings.noGameText"
+        justification="Graphics.TEXT_JUSTIFY_VCENTER"
+        font="Graphics.FONT_LARGE" 
+    >
+    </text-area>
+</layout>

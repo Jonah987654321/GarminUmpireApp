@@ -1,6 +1,8 @@
 <strings>
     <string id="AppName">HockeyUmpire</string>
 
+    <string id="noGameText">No game. Create one in the menu</string>
+
     <string id="BreakText">Break</string>
     <string id="FinishText">Game finished</string>
 </strings>

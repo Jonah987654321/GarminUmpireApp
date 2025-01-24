@@ -9,7 +9,7 @@ class newGameConfirmationDelegate extends WatchUi.ConfirmationDelegate {
     function onResponse(response) {
         if (response == WatchUi.CONFIRM_YES) {
             WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
-            Application.getApp().reset();
+            Application.getApp().getView().reset();
             return true;
         } else {
             WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);

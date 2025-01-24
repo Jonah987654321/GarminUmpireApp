@@ -14,10 +14,14 @@ class HockeyUmpireMenuDelegate extends WatchUi.Menu2InputDelegate {
                 System.println("menuSelectGamePreset");
                 break;
             case :menuNewGame:
-                var messageId = Rez.Strings.mainMenuNewGameConfirmation;
-                var message = Application.loadResource(messageId);
-                var confirmation = new WatchUi.Confirmation(message);
-                WatchUi.pushView(confirmation, new newGameConfirmationDelegate(), WatchUi.SLIDE_IMMEDIATE);
+                if (Application.getApp().getGameState() == 0) {    
+                    Application.getApp().newGameView();
+                } else {
+                    var messageId = Rez.Strings.mainMenuNewGameConfirmation;
+                    var message = Application.loadResource(messageId);
+                    var confirmation = new WatchUi.Confirmation(message);
+                    WatchUi.pushView(confirmation, new newGameConfirmationDelegate(), WatchUi.SLIDE_IMMEDIATE);
+                }
                 break;
             case :menuExitApp:
                 System.exit();
